@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Sorter</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="header_left">
+				<p class="nav_heading">Array Sorter</p>
+				<div class="algos">
+					<button>Bubble</button>
+					<button>Selection</button>
+					<button>Insertion</button>
+					<button>Merge</button>
+					<button>Quick</button>
+
+				</div>
+				
+
+			</div>
+			<div class="array-inputs">
+				<p> Size of the Array:</p>
+				<input id="a_size" type="range" min=20 max="150" step="1" value="80">
+				<p>Speed of the algorithm:</p>
+				<input type="range" id="a_speed" min=1 max=5 step="1" value="4" >
+				<button id="a_generate">Generate New Array!</button>
+				<button id="darkModeToggle">🌙 Dark Mode</button>
+				<button id="reload"> STOP </button>
+			</div>
+
+			
+		</nav>
+	</header>
+	<section>
+		<div id="Info_Cont1">
+			<p>Various Complexities regarding Sorting algorithms will be displayed here as you will go for visualisation of any of the above algorithm.</p>
+		</div>
+		<div id="array_container">
+			
+		</div>
+	</section>
+	<footer>
+
+	</footer>
+	<script type="text/javascript" src="./main.js"></script>
+	<script type="text/javascript" src="./bubble_sort.js"> </script>
+	<script type="text/javascript" src="./animations.js"></script>
+	<script type="text/javascript" src="./insertion_sort.js"></script>
+	<script type="text/javascript" src="./selection_sort.js"></script>
+	<script type="text/javascript" src="./merge_sort.js"></script>
+	<script type="text/javascript" src="./quick_sort.js"></script>
+</body>
+</html>
