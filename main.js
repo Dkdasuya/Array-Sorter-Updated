@@ -68,7 +68,7 @@ function runalgo(){
 	disable_buttons();
 
 	this.classList.add("butt_selected");
-	display_info(this.innerHTML);
+	updateComplexityInfo(this.innerHTML);
 	switch(this.innerText){
 		case "Bubble":
 			Bubble();
@@ -142,3 +142,37 @@ darkModeToggle.addEventListener("click", () => {
         darkModeToggle.textContent = "🌙 Dark Mode";
     }
 });
+
+const complexities = {
+	"Bubble": {
+			time: "Best: O(n), Average: O(n²), Worst: O(n²)",
+			space: "O(1)"
+	},
+	"Selection": {
+			time: "Best: O(n²), Average: O(n²), Worst: O(n²)",
+			space: "O(1)"
+	},
+	"Insertion": {
+			time: "Best: O(n), Average: O(n²), Worst: O(n²)",
+			space: "O(1)"
+	},
+	"Merge": {
+			time: "Best: O(n log n), Average: O(n log n), Worst: O(n log n)",
+			space: "O(n)"
+	},
+	"Quick": {
+			time: "Best: O(n log n), Average: O(n log n), Worst: O(n²)",
+			space: "O(log n)"
+	}
+};
+
+function updateComplexityInfo(algo) {
+	const infoBox = document.getElementById("Info_Cont1");
+	const complexity = complexities[algo];
+	infoBox.innerHTML = `
+			<p><strong>${algo} Sort</strong></p>
+			<p>Time Complexity: ${complexity.time}</p>
+			<p>Space Complexity: ${complexity.space}</p>
+	`;
+}
+
