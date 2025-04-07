@@ -12,16 +12,15 @@ nav{
 	color:white;
 	display: grid;
 	grid-column :55% 30%;
-	grid-template-columns: 55% 30%;
-	column-gap: 10%;
-	column-gap:10%;
+	grid-template-columns: 55% 35%;
+	column-gap: 1%;
 }
 
 nav .array-inputs{
 	margin-right: 15px;
 	display: grid;
 	grid-column: 60% 40%;
-	grid-template-columns: 60% 40%;
+	grid-template-columns: 50% 50%;
 	place-content:center;
 	padding:5% 0%;
 }
@@ -38,10 +37,9 @@ nav .array-inputs #a_generate {
 	background-color: transparent;
 	color: white;
 	padding-left: 20%;
-	border:none;
 	outline: none;
-	padding: 2% 2% 2% 2%;
-	margin-top: 2%;
+	padding: 8px 12px;
+	margin-right: 1%;
 }
 
 nav .array-inputs #reload{
@@ -182,4 +180,35 @@ button {
 button:hover {
 	background-color: var(--button-text);
 	color: var(--button-bg);
+}
+
+#array-input-method {
+  margin: 1rem 0;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+#custom-array-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#custom-array-section input {
+  padding: 6px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#slider-section input {
+  width: 100%;
+}
+
+#slider-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

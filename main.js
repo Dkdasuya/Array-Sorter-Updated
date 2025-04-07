@@ -22,17 +22,61 @@ var info_cont1 = document.getElementById('Info_Cont1');
 inp_gen.addEventListener('click',generate_array);
 inp_asize.addEventListener('input',update_array_size);
 
-function generate_array(){
+// Called on slider change
+function updateArraySize(val) {
+	document.getElementById("array-size-label").textContent = "Array Size: " + val;
+	array_size = val;
+	generate_array();
+}
+
+// Called when input type (radio) is changed
+function toggleInputMethod() {
+	const selected = document.querySelector('input[name="inputType"]:checked').value;
+	document.getElementById('slider-section').style.display = selected === 'random' ? 'block' : 'none';
+	document.getElementById('custom-array-section').style.display = selected === 'custom' ? 'block' : 'none';
+}
+
+
+function generate_array() {
 	cont.innerHTML = "";
-	for(var i =0;i<array_size;i++){
-		
-		div_sizes[i] = Math.floor(Math.random()*0.5*(inp_asize.max-inp_asize.min))+10;
-		divs[i] = document.createElement('div')		;
-		cont.appendChild(divs[i]);
-		margin_size = 0.1;
-		divs[i].style = "margin:0%"+margin_size+"%; background-color:blue ;width:"+(100/array_size/*-(2*margin_size)*/)+"%; height:" + (div_sizes[i]) + "%;"
+
+	const selectedInput = document.querySelector('input[name="inputType"]:checked').value;
+
+	if (selectedInput === 'custom') {
+			const input = document.getElementById("customArrayInput").value.trim();
+			if (!input) {
+					alert("Please enter a valid array!");
+					return;
+			}
+
+			const values = input.split(",").map(num => parseInt(num.trim(), 10));
+
+			if (values.some(isNaN)) {
+					alert("Please enter only valid integers separated by commas.");
+					return;
+			}
+
+			div_sizes = values;
+			array_size = div_sizes.length;
+	} else {
+			// Random array from slider
+			div_sizes = [];
+			for (let i = 0; i < array_size; i++) {
+					div_sizes[i] = Math.floor(Math.random() * 0.5 * (inp_asize.max - inp_asize.min)) + 10;
+			}
+	}
+
+	// Create bars
+	for (let i = 0; i < array_size; i++) {
+			divs[i] = document.createElement('div');
+			cont.appendChild(divs[i]);
+			margin_size = 0.1;
+
+			divs[i].style = "margin:0% " + margin_size + "%; background-color:blue; width:" +
+					(100 / array_size) + "%; height:" + div_sizes[i] + "%;";
 	}
 }
+
 
 function update_array_size(){
 	array_size = inp_asize.value;

@@ -21,8 +21,22 @@
 
 			</div>
 			<div class="array-inputs">
-				<p> Size of the Array:</p>
-				<input id="a_size" type="range" min=20 max="150" step="1" value="80">
+				<div id="array-input-method">
+					<label><input type="radio" name="inputType" value="random" checked onchange="toggleInputMethod()"> Use Slider (Random)</label>
+					<label><input type="radio" name="inputType" value="custom" onchange="toggleInputMethod()"> Enter Custom Array</label>
+				</div>
+				
+				<!-- Slider section -->
+				<div id="slider-section">
+					<input id="a_size" type="range" min="10" max="100" step="1" value="40" onchange="updateArraySize(this.value)">
+					<!-- <span id="array-size-label">Array Size: 40</span> -->
+				</div>
+				
+				<!-- Custom input section -->
+				<div id="custom-array-section" style="display: none;">
+					<input type="text" id="customArrayInput" placeholder="Enter comma-separated numbers">
+				</div>
+				
 				<p>Speed of the algorithm:</p>
 				<input type="range" id="a_speed" min=1 max=5 step="1" value="4" >
 				<button id="a_generate">Generate New Array!</button>
