@@ -220,3 +220,65 @@ function updateComplexityInfo(algo) {
 	`;
 }
 
+const API_BASE = "http://localhost:3000/api/auth";
+
+function register() {
+  const username = document.getElementById("auth-username").value;
+  const password = document.getElementById("auth-password").value;
+
+  fetch(`${API_BASE}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password })
+  }).then(res => res.json())
+    .then(data => {
+      document.getElementById("auth-message").textContent = data.message || data.error;
+    });
+}
+
+function login() {
+  const username = document.getElementById("auth-username").value;
+  const password = document.getElementById("auth-password").value;
+
+  fetch(`${API_BASE}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password })
+  }).then(res => res.json())
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        loadApp();
+      } else {
+        document.getElementById("auth-message").textContent = data.error;
+      }
+    });
+}
+
+function loadApp() {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  fetch(`${API_BASE}/protected`, {
+    headers: { "Authorization": "Bearer " + token }
+  }).then(res => res.json())
+    .then(data => {
+      if (data.message) {
+        document.getElementById("auth-container").style.display = "none";
+        document.getElementById("app").style.display = "block";
+      }
+    });
+}
+
+// Auto-load if already logged in
+window.onload = function () {
+  loadApp();
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  document.getElementById("app").style.display = "none";
+  document.getElementById("auth-container").style.display = "block";
+  document.getElementById("auth-message").textContent = "You have been logged out.";
+}
+

@@ -5,59 +5,73 @@
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<div class="header_left">
-				<p class="nav_heading">Array Sorter</p>
-				<div class="algos">
-					<button>Bubble</button>
-					<button>Selection</button>
-					<button>Insertion</button>
-					<button>Merge</button>
-					<button>Quick</button>
+	<div id="auth-container">
+		<h2>Login or Register</h2>
+		<input type="text" id="auth-username" placeholder="Username"><br>
+		<input type="password" id="auth-password" placeholder="Password"><br>
+		<button onclick="register()">Register</button>
+		<button onclick="login()">Login</button>
+		<p id="auth-message"></p>
+	</div>
 
-				</div>
-				
-
+	<div id="app" style="display: none;">
+		<header>
+			<div class="logout-button-container">
+				<button id="logoutButton" onclick="logout()">Logout</button>
 			</div>
-			<div class="array-inputs">
-				<div id="array-input-method">
-					<label><input type="radio" name="inputType" value="random" checked onchange="toggleInputMethod()"> Use Slider (Random)</label>
-					<label><input type="radio" name="inputType" value="custom" onchange="toggleInputMethod()"> Enter Custom Array</label>
-				</div>
-				
-				<!-- Slider section -->
-				<div id="slider-section">
-					<input id="a_size" type="range" min="10" max="100" step="1" value="40" onchange="updateArraySize(this.value)">
-					<!-- <span id="array-size-label">Array Size: 40</span> -->
-				</div>
-				
-				<!-- Custom input section -->
-				<div id="custom-array-section" style="display: none;">
-					<input type="text" id="customArrayInput" placeholder="Enter comma-separated numbers">
-				</div>
-				
-				<p>Speed of the algorithm:</p>
-				<input type="range" id="a_speed" min=1 max=5 step="1" value="4" >
-				<button id="a_generate">Generate New Array!</button>
-				<button id="darkModeToggle">🌙 Dark Mode</button>
-				<button id="reload"> STOP </button>
+			<div>
+				<nav>
+					<div class="header_left">
+						<p class="nav_heading">Array Sorter</p>
+						<div class="algos">
+							<button>Bubble</button>
+							<button>Selection</button>
+							<button>Insertion</button>
+							<button>Merge</button>
+							<button>Quick</button>
+		
+						</div>
+						
+		
+					</div>
+					<div class="array-inputs">
+						<div id="array-input-method">
+							<label><input type="radio" name="inputType" value="random" checked onchange="toggleInputMethod()"> Use Slider (Random)</label>
+							<label><input type="radio" name="inputType" value="custom" onchange="toggleInputMethod()"> Enter Custom Array</label>
+						</div>
+						
+						<!-- Slider section -->
+						<div id="slider-section">
+							<input id="a_size" type="range" min="10" max="100" step="1" value="40" onchange="updateArraySize(this.value)">
+							<!-- <span id="array-size-label">Array Size: 40</span> -->
+						</div>
+						
+						<!-- Custom input section -->
+						<div id="custom-array-section" style="display: none;">
+							<input type="text" id="customArrayInput" placeholder="Enter comma-separated numbers">
+						</div>
+						
+						<p>Speed of the algorithm:</p>
+						<input type="range" id="a_speed" min=1 max=5 step="1" value="4" >
+						<button id="a_generate">Generate New Array!</button>
+						<button id="darkModeToggle">🌙 Dark Mode</button>
+						<button id="reload"> STOP </button>
+					</div>
+				</nav>
 			</div>
-
-			
-		</nav>
-	</header>
-	<section>
-		<div id="Info_Cont1">
-			<p>Various Complexities regarding Sorting algorithms will be displayed here as you will go for visualisation of any of the above algorithm.</p>
-		</div>
-		<div id="array_container">
-			
-		</div>
-	</section>
-	<footer>
-
-	</footer>
+		</header>
+		<section>
+			<div id="Info_Cont1">
+				<p>Various Complexities regarding Sorting algorithms will be displayed here as you will go for visualisation of any of the above algorithm.</p>
+			</div>
+			<div id="array_container">
+				
+			</div>
+		</section>
+		<footer>
+	
+		</footer>
+	</div>
 	<script type="text/javascript" src="./main.js"></script>
 	<script type="text/javascript" src="./bubble_sort.js"> </script>
 	<script type="text/javascript" src="./animations.js"></script>
