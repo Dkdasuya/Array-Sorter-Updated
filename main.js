@@ -68,12 +68,23 @@ function generate_array() {
 
 	// Create bars
 	for (let i = 0; i < array_size; i++) {
-			divs[i] = document.createElement('div');
-			cont.appendChild(divs[i]);
-			margin_size = 0.1;
+			// divs[i] = document.createElement('div');
+			// cont.appendChild(divs[i]);
+			// margin_size = 0.1;
 
-			divs[i].style = "margin:0% " + margin_size + "%; background-color:blue; width:" +
-					(100 / array_size) + "%; height:" + div_sizes[i] + "%;";
+			// divs[i].style = "margin:0% " + margin_size + "%; background-color:blue; width:" +
+			// 		(100 / array_size) + "%; height:" + div_sizes[i] + "%;";
+			
+		divs[i] = document.createElement('div');
+    // Add a span element to display the number
+    const numberSpan = document.createElement('span');
+    numberSpan.textContent = div_sizes[i];
+    divs[i].appendChild(numberSpan);
+
+    cont.appendChild(divs[i]);
+    margin_size = 0.1;
+    divs[i].style = "margin:0% " + margin_size + "%; background-color:blue; width:" +
+        (100 / array_size) + "%; height:" + div_sizes[i] + "%;";
 	}
 }
 
@@ -188,36 +199,73 @@ darkModeToggle.addEventListener("click", () => {
 });
 
 const complexities = {
-	"Bubble": {
-			time: "Best: O(n), Average: O(n²), Worst: O(n²)",
-			space: "O(1)"
-	},
-	"Selection": {
-			time: "Best: O(n²), Average: O(n²), Worst: O(n²)",
-			space: "O(1)"
-	},
-	"Insertion": {
-			time: "Best: O(n), Average: O(n²), Worst: O(n²)",
-			space: "O(1)"
-	},
-	"Merge": {
-			time: "Best: O(n log n), Average: O(n log n), Worst: O(n log n)",
-			space: "O(n)"
-	},
-	"Quick": {
-			time: "Best: O(n log n), Average: O(n log n), Worst: O(n²)",
-			space: "O(log n)"
-	}
+    "Bubble": {
+        time: "Best: O(n), Average: O(n²), Worst: O(n²)",
+        space: "O(1)",
+        steps: [
+            "1. <span class='color-label' style='background:yellow'></span>Yellow: Compare adjacent elements",
+            "2. <span class='color-label' style='background:red'></span>Red: Swap if needed",
+            "3. <span class='color-label' style='background:blue'></span>Blue: Reset after comparison",
+            "4. <span class='color-label' style='background:black; border:1px solid var(--text-color)'></span>Black: Mark sorted elements",
+            "Repeatedly swaps adjacent elements until sorted"
+        ]
+    },
+    "Selection": {
+        time: "Best: O(n²), Average: O(n²), Worst: O(n²)",
+        space: "O(1)",
+        steps: [
+            "1. <span class='color-label' style='background:purple'></span>Purple: Current element",
+            "2. <span class='color-label' style='background:yellow'></span>Yellow: Scanning for minimum",
+            "3. <span class='color-label' style='background:red'></span>Red: New minimum found",
+            "4. <span class='color-label' style='background:blue'></span>Blue: Reset after comparison",
+            "5. <span class='color-label' style='background:black; border:1px solid var(--text-color)'></span>Black: Sorted elements"
+        ]
+    },
+    "Insertion": {
+        time: "Best: O(n), Average: O(n²), Worst: O(n²)",
+        space: "O(1)",
+        steps: [
+            "1. <span class='color-label' style='background:yellow'></span>Yellow: Current key element",
+            "2. <span class='color-label' style='background:red'></span>Red: Comparing/shifting elements",
+            "3. <span class='color-label' style='background:blue'></span>Blue: Reset after shifting",
+            "4. <span class='color-label' style='background:green'></span>Green: Sorted portion"
+        ]
+    },
+    "Merge": {
+        time: "Best: O(n log n), Average: O(n log n), Worst: O(n log n)",
+        space: "O(n)",
+        steps: [
+            "1. <span class='color-label' style='background:yellow'></span>Yellow: Midpoint",
+            "2. <span class='color-label' style='background:red'></span>Red: Merging elements",
+            "3. <span class='color-label' style='background:black; border:1px solid var(--text-color)'></span>Black: Merged position"
+        ]
+    },
+    "Quick": {
+        time: "Best: O(n log n), Average: O(n log n), Worst: O(n²)",
+        space: "O(log n)",
+        steps: [
+            "1. <span class='color-label' style='background:yellow'></span>Yellow: Pivot element",
+            "2. <span class='color-label' style='background:red'></span>Red: Swapping elements",
+            "3. <span class='color-label' style='background:blue'></span>Blue: Reset after comparison",
+            "4. <span class='color-label' style='background:black; border:1px solid var(--text-color)'></span>Black: Final pivot position"
+        ]
+    }
 };
 
 function updateComplexityInfo(algo) {
 	const infoBox = document.getElementById("Info_Cont1");
 	const complexity = complexities[algo];
 	infoBox.innerHTML = `
-			<p><strong>${algo} Sort</strong></p>
-			<p>Time Complexity: ${complexity.time}</p>
-			<p>Space Complexity: ${complexity.space}</p>
-	`;
+        <p><strong>${algo} Sort</strong></p>
+        <p>Time Complexity: ${complexity.time}</p>
+        <p>Space Complexity: ${complexity.space}</p>
+        <div style="margin-top: 15px; border-top: 2px solid var(--text-color); padding-top: 10px;">
+            <strong>Algorithm Steps:</strong>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                ${complexity.steps.map(step => `<li style="margin-bottom: 8px;">${step}</li>`).join('')}
+            </ul>
+        </div>
+    `;
 }
 
 const API_BASE = "http://localhost:3000/api/auth";

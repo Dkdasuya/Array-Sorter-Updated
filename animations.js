@@ -29,9 +29,14 @@ var delay_time = 10000/(Math.floor(array_size/10)*speed);
 var c_delay = 0;
 
 function div_update(cont,height,color){
-	window.setTimeout(function(){
-		cont.style = "margin:0%"+margin_size+"%; width:"+(100/array_size)+"%; height:"+height+"%; background-color:"+color+";";
-	},c_delay+=delay_time);
+	window.setTimeout(function () {
+        cont.style = "margin:0%" + margin_size + "%; width:" + (100 / array_size) + "%; height:" + height + "%; background-color:" + color + ";";
+        // Update the number text
+        const span = cont.querySelector('span');
+        if (span) {
+            span.textContent = height;
+        }
+    }, c_delay += delay_time);
 }
 
 function enable_buttons(){
